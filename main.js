@@ -38,11 +38,11 @@ bot.onText(/\d-\d$/, (msg, match) => {
   }
 });
 
-async function addRecordToDB({ firstName, username, id }) {
+async function addRecordToDB({ first_name, username, id }) {
   await connectDB();
   const newUser = new User({
     id,
-    firstName,
+    first_name,
     username,
     date: (new Date).toString()
   });
