@@ -7,8 +7,8 @@ const port = process.env.PORT || 8443;
 const host = process.env.HOST;
 
 // Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, {polling: true});
-// const bot = new TelegramBot(token, { webHook: { port } });
+// const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, { webHook: { port } });
 bot.setWebHook('https://kyrylivskyy-bot.herokuapp.com/' + token);
 
 bot.onText(/^\/start$/, function (msg) {
