@@ -40,11 +40,18 @@ bot.onText(/\d-\d$/, (msg, match) => {
 
 async function addRecordToDB({ first_name, username, id }) {
   await connectDB();
+  const currentDate = (new Date).toString()
   const newUser = new User({
     id,
     first_name,
     username,
-    date: (new Date).toString()
+    date: currentDate
   });
-  await newUser.save();
+  const oldUser = await User.findOne({username});
+  if (oldUser) {
+    oldUser.date = currentDate;
+    await oldUser.save();
+  } else {
+    await newUser.save();
+  }
 }
